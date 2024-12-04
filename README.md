@@ -25,7 +25,3 @@ The purpose of the Traveler Problem is to solve the challenge of finding the sho
 
 6. **Result Validation**:
    - Verified the solution by printing the shortest route from Arizona to LA, demonstrating accurate results.
-
----
-
-This program successfully integrates recursion, LINQ, and dictionaries to solve the Traveler Problem in an efficient and readable manner.
