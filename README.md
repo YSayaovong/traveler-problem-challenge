@@ -1,58 +1,31 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+# Traveler Problem
 
-class Program
-{
-    static void Main(string[] args)
-    {
-        // Step 1: Define the city network as a dictionary (Graph representation)
-        var cityGraph = new Dictionary<string, List<string>>
-        {
-            { "Arizona", new List<string> { "Utah", "New Mexico" } },
-            { "Utah", new List<string> { "Colorado" } },
-            { "New Mexico", new List<string> { "Texas" } },
-            { "Colorado", new List<string> { "Kansas" } },
-            { "Texas", new List<string> { "LA" } },
-            { "Kansas", new List<string> { "LA" } },
-            { "LA", new List<string>() } // LA is a terminal city
-        };
+## Purpose
 
-        // Step 2: Call the recursive function to find the shortest path
-        var shortestPath = FindShortestPath(cityGraph, "Arizona", "LA", new List<string>());
+The purpose of the Traveler Problem is to solve the challenge of finding the shortest route between two cities in a graph-based road network. This program demonstrates the use of efficient algorithms and data structures to navigate and process interconnected data, making it applicable to real-world problems such as routing and logistics.
 
-        // Step 3: Display the shortest path
-        Console.WriteLine("Shortest Path: " + string.Join(" -> ", shortestPath));
-    }
+---
 
-    /// <summary>
-    /// Finds the shortest path between two cities using recursion and LINQ.
-    /// </summary>
-    /// <param name="graph">Dictionary representing the city network</param>
-    /// <param name="start">Starting city</param>
-    /// <param name="destination">Destination city</param>
-    /// <param name="visited">List of visited cities to avoid loops</param>
-    /// <returns>List representing the shortest path</returns>
-    static List<string> FindShortestPath(Dictionary<string, List<string>> graph, string start, string destination, List<string> visited)
-    {
-        // Add the current city to the visited list
-        visited.Add(start);
+## Accomplishments
 
-        // Base Case: If the start equals the destination, return the current path
-        if (start == destination)
-            return new List<string> { start };
+1. **Graph Representation**:
+   - Modeled the road network using a dictionary, representing cities as nodes and roads as edges.
 
-        // Recursive Case: Explore neighboring cities
-        var paths = new List<List<string>>();
+2. **Recursive Exploration**:
+   - Implemented a recursive approach to explore all possible routes between the starting city and the destination.
 
-        foreach (var neighbor in graph[start].Where(city => !visited.Contains(city)))
-        {
-            var path = FindShortestPath(graph, neighbor, destination, new List<string>(visited));
-            if (path.Any()) // Only add non-empty paths
-                paths.Add(new List<string> { start }.Concat(path).ToList());
-        }
+3. **Avoiding Loops**:
+   - Used a "visited" list to prevent revisiting cities, ensuring efficiency and correctness.
 
-        // Use LINQ to find the shortest path based on the number of cities
-        return paths.OrderBy(path => path.Count).FirstOrDefault() ?? new List<string>();
-    }
-}
+4. **Path Scoring**:
+   - Measured the quality of each route based on the number of cities in the path (shorter paths scored better).
+
+5. **LINQ for Optimization**:
+   - Leveraged LINQ to sort and filter paths, identifying the shortest one efficiently.
+
+6. **Result Validation**:
+   - Verified the solution by printing the shortest route from Arizona to LA, demonstrating accurate results.
+
+---
+
+This program successfully integrates recursion, LINQ, and dictionaries to solve the Traveler Problem in an efficient and readable manner.
